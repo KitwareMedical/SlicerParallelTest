@@ -76,7 +76,7 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
    
 
     # Buttons
-    self.ui.applyButton.connect('clicked(bool)', self.onApplyButton)
+    self.ui.runWithScriptedCLIButton.connect('clicked(bool)', self.onRunWithScriptedCLIButtonClicked)
 
     
 
@@ -115,13 +115,13 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
   
 
-  def onApplyButton(self):
+  def onRunWithScriptedCLIButtonClicked(self):
     """
     Run processing when user clicks "Apply" button.
     """
-    self.ui.applyButton.enabled = False
-    self.logic.process()
-    self.ui.applyButton.enabled = True
+    self.ui.runWithScriptedCLIButton.enabled = False
+    self.logic.processWithScriptedCLI()
+    self.ui.runWithScriptedCLIButton.enabled = True
 
 
 #
@@ -140,7 +140,7 @@ class ParallelTestDriverLogic(ScriptedLoadableModuleLogic):
 
  
 
-  def process(self):
+  def processWithScriptedCLI(self):
     """
     Run the processing algorithm.
     Can be used without GUI widget.

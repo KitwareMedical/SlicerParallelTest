@@ -9,7 +9,10 @@ def main(name):
 
     print("Starting " + name)
     import sys, subprocess
-    flags = subprocess.CREATE_NEW_CONSOLE
+    if os.name == 'nt':
+        flags = subprocess.CREATE_NEW_CONSOLE
+    else:
+        flags = 0
     commandString = "input(\""+name+ ": Press Enter to continue...\")"
     p = subprocess.Popen([sys.executable, "-c",  commandString], creationflags=flags)
     p.wait()

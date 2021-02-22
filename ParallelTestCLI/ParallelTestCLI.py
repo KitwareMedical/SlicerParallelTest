@@ -13,7 +13,7 @@ def main(name):
         flags = subprocess.CREATE_NEW_CONSOLE
     else:
         flags = 0
-    commandString = "input(\""+name+ ": Press Enter to continue...\")"
+    commandString = "import time; print(\""+name+ "\"); time.sleep(4)"
     p = subprocess.Popen([sys.executable, "-c",  commandString], creationflags=flags)
     p.wait()
     print("Ending " + name)

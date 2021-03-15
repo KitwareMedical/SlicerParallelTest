@@ -20,7 +20,20 @@
       <string>Run the algorithm.</string>
      </property>
      <property name="text">
-      <string>Run Test</string>
+      <string>Run Scripted CLIs in parallel</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="runWithCppCLIButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="toolTip">
+      <string>Run the algorithm.</string>
+     </property>
+     <property name="text">
+      <string>Run Cpp CLIs in parallel</string>
      </property>
     </widget>
    </item>

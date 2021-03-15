@@ -175,8 +175,7 @@ SlicerWithParallelTest --python-code "slicer.util.selectModule('ParallelTestDriv
   Ending Cpp CLI Two at 18:00:25
 
   ParallelTestCLI completed without errors
-```
-
+  ```
 
 ## Modules
 

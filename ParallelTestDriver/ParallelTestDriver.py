@@ -31,10 +31,6 @@ This file was originally developed by Jean-Christophe Fillion-Robin, Kitware Inc
 and Steve Pieper, Isomics, Inc. and was partially funded by NIH grant 3P41RR013218-12S1.
 """
 
-    
-
-
-
 #
 # ParallelTestDriverWidget
 #
@@ -72,8 +68,6 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     # Create logic class. Logic implements all computations that should be possible to run
     # in batch mode, without a graphical user interface.
     self.logic = ParallelTestDriverLogic()
-
-   
 
     # Buttons
     self.ui.runWithScriptedCLIButton.connect('clicked(bool)', self.onRunWithScriptedCLIButtonClicked)
@@ -138,33 +132,28 @@ class ParallelTestDriverLogic(ScriptedLoadableModuleLogic):
   https://github.com/Slicer/Slicer/blob/master/Base/Python/slicer/ScriptedLoadableModule.py
   """
 
- 
-
   def processWithScriptedCLI(self):
     """
-    Run the processing algorithm.
-    Can be used without GUI widget.
-    :param inputVolume: volume to be thresholded
-    :param outputVolume: thresholding result
-    :param imageThreshold: values above/below this threshold will be set to 0
-    :param invert: if True then values above the threshold will be set to 0, otherwise values below are set to 0
-    :param showResult: show output volume in slice viewers
+    Starts two scripted CLIs asynchronously.
     """
 
-        
-    logging.info('Processing started')
+    logging.info('Scheduling processing with scipted CLIs started')
 
     cliParams = {
-      'name': "CLI One",
+      'name': "Scripted CLI One",
       }
+    logging.info('Starting %s' % cliParams['name'])
     cliNode = slicer.cli.run(slicer.modules.paralleltestcli, None, cliParams, wait_for_completion=False)
     # We don't need the CLI module node anymore, remove it to not clutter the scene with it
     cliParams = {
-      'name': "CLI Two",
+      'name': "Scripted CLI Two",
       }
+    logging.info('Starting %s' % cliParams['name'])
     cliNode = slicer.cli.run(slicer.modules.paralleltestcli, None, cliParams, wait_for_completion=False)
     slicer.mrmlScene.RemoveNode(cliNode)
-    logging.info('Processing completed') 
+
+    logging.info('Scheduling processing with scipted CLIs completed')
+
 
 #
 # ParallelTestDriverTest
@@ -201,9 +190,5 @@ class ParallelTestDriverTest(ScriptedLoadableModuleTest):
     """
 
     self.delayDisplay("Starting the test")
-
-    
-
-    
 
     self.delayDisplay('Test passed')

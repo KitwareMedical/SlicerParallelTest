@@ -21,6 +21,7 @@ include(${Slicer_USE_FILE})
 # Extension modules
 add_subdirectory(ParallelTestDriver)
 add_subdirectory(ParallelTestCLI)
+add_subdirectory(ParallelTestCppCLI)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------

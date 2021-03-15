@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<executable>
+  <category>Examples</category>
+  <index>0</index>
+  <title>ParallelTestCLI</title>
+  <description><![CDATA[Apply a Gaussian blur to an image]]></description>
+  <version>0.1.0.</version>
+  <documentation-url>https://github.com/lassoan/SlicerPythonCLIExample</documentation-url>
+  <license/>
+  <contributor>Andras Lasso (PerkLab)</contributor>
+  <acknowledgements><![CDATA[This work is part of the National Alliance for Medical Image Computing (NAMIC), funded by the National Institutes of Health through the NIH Roadmap for Medical Research, Grant U54 EB005149.]]></acknowledgements>
+  <parameters>
+    <string>
+      <name>name</name>
+      <label>Name</label>
+      <index>0</index>
+      <description><![CDATA[Text]]></description>
+      <default>Default</default>
+    </string>
+    <integer>
+      <name>numberOfSteps</name>
+      <label>Number of steps</label>
+      <longflag>--numberOfSteps</longflag>
+      <description><![CDATA[Number of steps]]></description>
+      <default>10</default>
+    </integer>
+  </parameters>
+</executable>

@@ -71,8 +71,7 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
     # Buttons
     self.ui.runWithScriptedCLIButton.connect('clicked(bool)', self.onRunWithScriptedCLIButtonClicked)
-
-    
+    self.ui.runWithCppCLIButton.connect('clicked(bool)', self.onRunWithCppCLIButtonClicked)
 
   def cleanup(self):
     """
@@ -107,8 +106,6 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     # If this module is shown while the scene is closed then recreate a new parameter node immediately
     pass
 
-  
-
   def onRunWithScriptedCLIButtonClicked(self):
     """
     Run processing when user clicks "Apply" button.
@@ -116,6 +113,14 @@ class ParallelTestDriverWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     self.ui.runWithScriptedCLIButton.enabled = False
     self.logic.processWithScriptedCLI()
     self.ui.runWithScriptedCLIButton.enabled = True
+
+  def onRunWithCppCLIButtonClicked(self):
+    """
+    Run processing when user clicks "Apply" button.
+    """
+    self.ui.runWithCppCLIButton.enabled = False
+    self.logic.processWithCppCLI()
+    self.ui.runWithCppCLIButton.enabled = True
 
 
 #
@@ -154,6 +159,26 @@ class ParallelTestDriverLogic(ScriptedLoadableModuleLogic):
 
     logging.info('Scheduling processing with scipted CLIs completed')
 
+  def processWithCppCLI(self):
+    """
+    Starts two C++ CLIs asynchronously.
+    """
+    logging.info('Scheduling processing with Cpp CLIs started')
+
+    cliParams = {
+      'name': "Cpp CLI One",
+      }
+    logging.info('Starting %s' % cliParams['name'])
+    cliNode = slicer.cli.run(slicer.modules.paralleltestcppcli, None, cliParams, wait_for_completion=False)
+    # We don't need the CLI module node anymore, remove it to not clutter the scene with it
+    cliParams = {
+      'name': "Cpp CLI Two",
+      }
+    logging.info('Starting %s' % cliParams['name'])
+    cliNode = slicer.cli.run(slicer.modules.paralleltestcppcli, None, cliParams, wait_for_completion=False)
+    slicer.mrmlScene.RemoveNode(cliNode)
+
+    logging.info('Scheduling processing with Cpp CLIs completed')
 
 #
 # ParallelTestDriverTest

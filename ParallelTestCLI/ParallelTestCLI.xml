@@ -16,6 +16,13 @@
       <index>0</index>
       <description><![CDATA[Text]]></description>
       <default>Default</default>
-    </string>        
+    </string>
+    <integer>
+      <name>numberOfSteps</name>
+      <label>Number of steps</label>
+      <longflag>--numberOfSteps</longflag>
+      <description><![CDATA[Number of steps]]></description>
+      <default>10</default>
+    </integer>
   </parameters>
 </executable>
